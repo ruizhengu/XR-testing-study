@@ -1,12 +1,13 @@
 import bibtexparser
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 import os
 import glob
 
 
 class Metadata:
     def __init__(self):
-        self.bib_files = glob.glob(os.path.join("iter-1/bib", '*.bib'))
+        # self.bib_files = glob.glob(os.path.join("iter-1/bib", '*.bib'))
+        self.bib_files = glob.glob(os.path.join("iter-1/bib", 'IEEE*.bib'))
         self.excel_file = "iter-1/XR Testing Literature.xlsx"
         self.headers = [
             "Title",
@@ -17,10 +18,13 @@ class Metadata:
             "Booktitle",
             "Keywords"
         ]
-        self.workbook = Workbook()
-        self.sheet = self.workbook.active
+        if os.path.exists(self.excel_file):
+            self.workbook = load_workbook(self.excel_file)
+            self.sheet = self.workbook["IEEE"]
+        else:
+            self.workbook = Workbook()
+            self.sheet = self.workbook.active
         self.sheet.append(self.headers)
-        self.count = 0
 
     def save_metadata(self):
         for bib_file in self.bib_files:
@@ -44,10 +48,8 @@ class Metadata:
                     booktitle,
                     keywords
                 ])
-                self.count += 1
 
             self.workbook.save(self.excel_file)
-        print(self.count)
 
 
 if __name__ == '__main__':
