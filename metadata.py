@@ -6,8 +6,8 @@ import glob
 
 class Metadata:
     def __init__(self):
-        self.bib_files = glob.glob(os.path.join("bib", '*.bib'))
-        self.excel_file = "XR Testing Literature.xlsx"
+        self.bib_files = glob.glob(os.path.join("iter-1/bib", '*.bib'))
+        self.excel_file = "iter-1/XR Testing Literature.xlsx"
         self.headers = [
             "Title",
             "Author",
