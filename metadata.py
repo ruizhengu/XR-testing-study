@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 import bibtexparser
@@ -26,6 +27,7 @@ class Metadata:
             "Publisher",
             "DOI",
             "Booktitle",
+            "Journal",
             "Keywords"
         ]
         if os.path.exists(self.excel_file):
@@ -44,8 +46,23 @@ class Metadata:
             for entry in bib_data.entries:
                 title = entry.get("title", "N/A")
                 if (
-                        "virtual reality" in title or "augmented reality" in title or "mixed reality" or "extended reality" in title or "VR" in title or "AR" in title or "XR" in title or "MR" in title) and (
-                        "test" in title or "validation" in title or "verification" in title or "bug" in title or "defect" in title or "fault" in title or "error" in title) and "usability" not in title:
+                        re.search(r'\bvirtual reality\b', title, re.IGNORECASE) or
+                        re.search(r'\baugmented reality\b', title, re.IGNORECASE) or
+                        re.search(r'\bmixed reality\b', title, re.IGNORECASE) or
+                        re.search(r'\bextended reality\b', title, re.IGNORECASE) or
+                        re.search(r'\bVR\b', title) or
+                        re.search(r'\bAR\b', title) or
+                        re.search(r'\bXR\b', title) or
+                        re.search(r'\bMR\b', title)
+                ) and (
+                        re.search(r'\btest\b', title, re.IGNORECASE) or
+                        re.search(r'\bvalidation\b', title, re.IGNORECASE) or
+                        re.search(r'\bverification\b', title, re.IGNORECASE) or
+                        re.search(r'\bbug\b', title, re.IGNORECASE) or
+                        re.search(r'\bdefect\b', title, re.IGNORECASE) or
+                        re.search(r'\bfault\b', title, re.IGNORECASE) or
+                        re.search(r'\berror\b', title, re.IGNORECASE)
+                ) and not re.search(r'\busability\b', title, re.IGNORECASE):
                     count += 1
                     self.save_metadata(entry)
         print(count)
@@ -57,8 +74,8 @@ class Metadata:
         publisher = entry.get("publisher", "N/A")
         doi = entry.get("doi", "N/A")
         booktitle = entry.get("booktitle", "N/A")
+        journal = entry.get("journal", "N/A")
         keywords = entry.get("keywords", "N/A")
-
         self.sheet.append([
             title,
             author,
@@ -66,6 +83,7 @@ class Metadata:
             publisher,
             doi,
             booktitle,
+            journal,
             keywords
         ])
         self.workbook.save(self.excel_file)
