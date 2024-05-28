@@ -14,8 +14,7 @@ class Metadata:
             "IEEE": {"files": "IEEE*.bib", "sheet": "IEEE"},
             "Scopus": {"files": "scopus*.bib", "sheet": "Scopus"}
         }
-        # self.dl = self.dl_dict["Scopus"]
-        self.dl = self.dl_dict["IEEE"]
+        self.dl = self.dl_dict["Scopus"]
         self.iter_root = Path("iter-1")
 
         self.bib_folder = self.iter_root / "bib"
