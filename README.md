@@ -8,8 +8,8 @@
 
 | Database      | Search results | Keyword verification | Included | Excluded | Unclear |
 | ------------- | :------------: | :------------------: | :------: | :------: | :-----: |
-| ACM           |       80       |                      |          |          |         |
-| IEEE          |                |                      |          |          |         |
+| ACM           |       80       |          23          |          |          |         |
+| IEEE          |      304       |         282          |          |          |         |
 | Scopus        |      1453      |         1052         |          |          |         |
 | SpringLink    |                |                      |          |          |         |
 | ScienceDirect |                |                      |          |          |         |
