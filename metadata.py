@@ -39,11 +39,13 @@ class Metadata:
         self.sheet.append(self.headers)
 
     def keyword_verification(self):
-        count = 0
+        count_search_results = 0
+        count_keyword_verification = 0
         for bib_file in self.bib_files:
             with open(bib_file) as file:
                 bib_data = bibtexparser.load(file)
             for entry in bib_data.entries:
+                count_search_results += 1
                 title = entry.get("title", "N/A")
                 if (
                         re.search(r'\bvirtual reality\b', title, re.IGNORECASE) or
@@ -63,9 +65,10 @@ class Metadata:
                         re.search(r'\bfault\b', title, re.IGNORECASE) or
                         re.search(r'\berror\b', title, re.IGNORECASE)
                 ) and not re.search(r'\busability\b', title, re.IGNORECASE):
-                    count += 1
-                    self.save_metadata(entry)
-        print(count)
+                    count_keyword_verification += 1
+                    # self.save_metadata(entry)
+        print("count_search_results", count_search_results)
+        print("count_keyword_verification", count_keyword_verification)
 
     def save_metadata(self, entry):
         title = entry.get("title", "N/A")
