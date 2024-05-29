@@ -12,5 +12,5 @@
 | IEEE          |      304       |         282          |          |          |         |
 | Scopus        |      1453      |         1259         |          |          |         |
 | ScienceDirect |                |          63          |          |          |         |
-| ProQuest      |      263       |         230          |          |          |         |
+| ProQuest      |      586       |         517          |          |          |         |
 

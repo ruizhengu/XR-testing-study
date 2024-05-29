@@ -36,5 +36,9 @@ Search String = $XR **AND** ($T **OR** $B) **AND** $S **NOT** $UX
 
 # full text
 software OR application
+
+
+# ProQuest
+title(("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR") AND (test* OR validat* OR verif* OR bug* OR defect* OR fault* OR error*) NOT usability) AND (software OR application*)
 ```
 

@@ -52,7 +52,7 @@ class Metadata:
                 title = entry.get("title", "N/A")
                 if self.keyword_verification(title):
                     count_keyword_verification += 1
-                    # self.save_metadata(entry)
+                    # self.save_metadata(entry)1
         print("count_search_results", count_search_results)
         print("count_keyword_verification", count_keyword_verification)
 
