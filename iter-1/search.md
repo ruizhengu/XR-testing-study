@@ -32,7 +32,10 @@ Search String = $XR **AND** ($T **OR** $B) **AND** $S **NOT** $UX
 
 ```
 # title
-("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR “VR” OR “AR” OR “XR” OR “MR”) AND (test OR validation OR verification OR bug OR defect OR fault OR error) NOT usability
+("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR") AND (test OR validation OR verification OR bug OR defect OR fault OR error) NOT usability
+
+# SpringerLink
+
 
 # full text
 software OR application

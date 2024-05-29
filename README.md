@@ -11,7 +11,6 @@
 | ACM           |       80       |          23          |          |          |         |
 | IEEE          |      304       |         282          |          |          |         |
 | Scopus        |      1453      |         1259         |          |          |         |
-| SpringLink    |                |                      |          |          |         |
-| ScienceDirect |                |                      |          |          |         |
+| ScienceDirect |                |          63          |          |          |         |
 | ProQuest      |                |                      |          |          |         |
 

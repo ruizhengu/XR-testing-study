@@ -12,9 +12,11 @@ class Metadata:
         self.dl_dict = {
             "ACM": {"files": "acm*.bib", "sheet": "ACM"},
             "IEEE": {"files": "IEEE*.bib", "sheet": "IEEE"},
-            "Scopus": {"files": "scopus*.bib", "sheet": "Scopus"}
+            "Scopus": {"files": "scopus*.bib", "sheet": "Scopus"},
+            "ScienceDirect": {"files": "ScienceDirect*.bib", "sheet": "ScienceDirect"}
         }
-        self.dl = self.dl_dict["Scopus"]
+        # self.dl = self.dl_dict["Scopus"]
+        self.dl = self.dl_dict["ScienceDirect"]
         self.iter_root = Path("iter-1")
 
         self.bib_folder = self.iter_root / "bib"
