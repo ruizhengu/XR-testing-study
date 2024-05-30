@@ -33,6 +33,8 @@ class Metadata:
             "Journal",
             "Keywords"
         ]
+        self.keyword_frequencies = {}
+
         if os.path.exists(self.excel_file):
             self.workbook = load_workbook(self.excel_file)
             self.sheet = self.workbook[self.dl["sheet"]]
@@ -97,12 +99,14 @@ class Metadata:
                     else:
                         entry_dict[field] = "N/A"
                 title = entry_dict["title"]
+                journal = entry_dict["journal"]
+                self.update_keyword_frequency(journal)
                 if self.keyword_verification(title):
                     count_keyword_verification += 1
-                    self.save_metadata_manual(entry_dict)
+                    # self.save_metadata_manual(entry_dict)
         print("count_search_results", count_search_results)
         print("count_keyword_verification", count_keyword_verification)
-
+        print("keyword frequencies", sorted(self.keyword_frequencies.items(), key=lambda item: item[1], reverse=True))
 
     def save_metadata_manual(self, entry_dict):
         title = entry_dict["title"]
@@ -146,6 +150,17 @@ class Metadata:
         ) and not re.search(r'usability', title, re.IGNORECASE):
             return True
         return False
+
+    def update_keyword_frequency(self, title):
+        title = title.lower()
+        title = re.sub(r'[^\w\s]', '', title)
+        words = title.split()
+
+        for word in words:
+            if word in self.keyword_frequencies:
+                self.keyword_frequencies[word] += 1
+            else:
+                self.keyword_frequencies[word] = 1
 
 
 if __name__ == '__main__':
