@@ -16,8 +16,14 @@ class Metadata:
             "ScienceDirect": {"files": "ScienceDirect*.bib", "sheet": "ScienceDirect"},
             "ProQuest": {"files": "ProQuest*.bib", "sheet": "ProQuest"}
         }
-        # self.dl = self.dl_dict["Scopus"]
-        self.dl = self.dl_dict["ProQuest"]
+
+        # self.library = "ACM"
+        # self.library = "IEEE"
+        self.library = "Scopus"
+        # self.library = "ScienceDirect"
+        # self.library = "ProQuest"
+
+        self.dl = self.dl_dict[self.library]
         self.iter_root = Path("iter-1")
 
         self.bib_folder = self.iter_root / "bib"
@@ -43,6 +49,12 @@ class Metadata:
             self.sheet = self.workbook.active
         self.sheet.append(self.headers)
 
+    def run(self):
+        if self.library == "ProQuest" or self.library == "Scopus":
+            self.parse_bibtex_manual()
+        else:
+            self.parse_bibtex()
+
     def parse_bibtex(self):
         count_search_results = 0
         count_keyword_verification = 0
@@ -54,7 +66,7 @@ class Metadata:
                 title = entry.get("title", "N/A")
                 if self.keyword_verification(title):
                     count_keyword_verification += 1
-                    # self.save_metadata(entry)1
+                    # self.save_metadata(entry)
         print("count_search_results", count_search_results)
         print("count_keyword_verification", count_keyword_verification)
 
@@ -99,14 +111,14 @@ class Metadata:
                     else:
                         entry_dict[field] = "N/A"
                 title = entry_dict["title"]
-                journal = entry_dict["journal"]
-                self.update_keyword_frequency(journal)
+                # journal = entry_dict["journal"]
+                # self.update_keyword_frequency(journal)
                 if self.keyword_verification(title):
                     count_keyword_verification += 1
-                    # self.save_metadata_manual(entry_dict)
+                    self.save_metadata_manual(entry_dict)
         print("count_search_results", count_search_results)
         print("count_keyword_verification", count_keyword_verification)
-        print("keyword frequencies", sorted(self.keyword_frequencies.items(), key=lambda item: item[1], reverse=True))
+        # print("keyword frequencies", sorted(self.keyword_frequencies.items(), key=lambda item: item[1], reverse=True))
 
     def save_metadata_manual(self, entry_dict):
         title = entry_dict["title"]
@@ -165,5 +177,4 @@ class Metadata:
 
 if __name__ == '__main__':
     m = Metadata()
-    # m.parse_bibtex()
-    m.parse_bibtex_manual()
+    m.run()
