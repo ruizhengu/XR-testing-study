@@ -12,31 +12,26 @@ Search String = $XR **AND** ($T **OR** $B) **AND** $S **NOT** $UX
 * Search in title
 * test OR validation OR verification
 
-### $B
-
-* Synonyms of "bug"
-* Serach in title
-* bug OR defect OR fault OR error
-
 ### $S
 
+* could be removed, only for narrowing the search down
 * keywords for identifing XR **software**
 * search in full text
 * software OR application
 
 ### $UX
 
+* could be removed, only for narrowing the search down
 * keywords related to user experience
 * search in title 
 * usability
 
 ```
 # title
-("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR") AND (test OR validation OR verification OR bug OR defect OR fault OR error) NOT usability
+("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR") AND (test OR validation OR verification)
 
 # full text
 software OR application
-
 
 # ProQuest
 title(("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR") AND (test* OR validat* OR verif* OR bug* OR defect* OR fault* OR error*) NOT usability) AND (software OR application*)
