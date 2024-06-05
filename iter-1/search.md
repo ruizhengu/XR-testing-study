@@ -35,8 +35,8 @@ Search String = $XR **AND** ($T **OR** $B) **AND** $S **NOT** $UX
 | Virtual Reality (VR) Automated Testing in the Wild: A Case Study on Unity-Based VR Applications | https://doi.org/10.1145/3597926.3598134                      |    T     |
 | PredART: Towards Automatic Oracle Prediction of Object Placements in Augmented Reality Testing | https://doi.org/10.1145/3551349.3561160                      |    T     |
 | Automated testing of virtual reality application interfaces  | https://doi.org/10.1145/769953.769966                        |    T     |
-|                                                              |                                                              |          |
-|                                                              |                                                              |          |
+| Automated Test of VR Applications                            | https://doi.org/10.1007/978-3-030-60703-6_18                 |    T     |
+| An automated functional testing approach for virtual reality applications | https://doi.org/10.1002/stvr.1690                            |          |
 
 
 

@@ -19,8 +19,8 @@ class Metadata:
 
         # self.library = "ACM"
         # self.library = "IEEE"
-        # self.library = "Scopus"
-        self.library = "ScienceDirect"
+        self.library = "Scopus"
+        # self.library = "ScienceDirect"
         # self.library = "ProQuest"
 
         self.dl = self.dl_dict[self.library]
@@ -113,14 +113,11 @@ class Metadata:
                     else:
                         entry_dict[field] = "N/A"
                 title = entry_dict["title"]
-                # journal = entry_dict["journal"]
-                # self.update_keyword_frequency(journal)
                 if self.keyword_verification(title):
                     count_keyword_verification += 1
                     self.save_metadata_manual(entry_dict)
         print("count_search_results", count_search_results)
         print("count_keyword_verification", count_keyword_verification)
-        # print("keyword frequencies", sorted(self.keyword_frequencies.items(), key=lambda item: item[1], reverse=True))
 
     def save_metadata_manual(self, entry_dict):
         title = entry_dict["title"]
