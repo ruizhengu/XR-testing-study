@@ -8,7 +8,7 @@
 
 | Database      | Search results | Keyword verification | Unique | Included | Excluded | Unclear |
 | ------------- | :------------: | :------------------: | :----: | :------: | :------: | :-----: |
-| ACM           |       80       |          45          |   44   |          |          |         |
+| ACM           |       60       |          60          |   60   |          |          |         |
 | IEEE          |      304       |         282          |        |          |          |         |
 | Scopus        |      462       |         450          |  448   |          |          |         |
 | ScienceDirect |                |          63          |        |          |          |         |

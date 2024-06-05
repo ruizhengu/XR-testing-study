@@ -17,9 +17,9 @@ class Metadata:
             "ProQuest": {"files": "ProQuest*.bib", "sheet": "ProQuest"}
         }
 
-        # self.library = "ACM"
+        self.library = "ACM"
         # self.library = "IEEE"
-        self.library = "Scopus"
+        # self.library = "Scopus"
         # self.library = "ScienceDirect"
         # self.library = "ProQuest"
 
@@ -66,7 +66,9 @@ class Metadata:
                 title = entry.get("title", "N/A")
                 if self.keyword_verification(title):
                     count_keyword_verification += 1
-                    # self.save_metadata(entry)
+                    self.save_metadata(entry)
+                # else:
+                #     print(title)
         print("count_search_results", count_search_results)
         print("count_keyword_verification", count_keyword_verification)
 
@@ -142,7 +144,7 @@ class Metadata:
         self.workbook.save(self.excel_file)
 
     def keyword_verification(self, title):
-        if (
+        if ((
                 re.search(r'virtual reality', title, re.IGNORECASE) or
                 re.search(r'augmented reality', title, re.IGNORECASE) or
                 re.search(r'mixed reality', title, re.IGNORECASE) or
@@ -154,12 +156,13 @@ class Metadata:
         ) and (
                 re.search(r'test', title, re.IGNORECASE) or
                 re.search(r'validat', title, re.IGNORECASE) or
-                re.search(r'verifi', title, re.IGNORECASE) or
-                re.search(r'bug', title, re.IGNORECASE) or
-                re.search(r'defect', title, re.IGNORECASE) or
-                re.search(r'fault', title, re.IGNORECASE) or
-                re.search(r'error', title, re.IGNORECASE)
-        ) and not re.search(r'usability', title, re.IGNORECASE):
+                re.search(r'verifi', title, re.IGNORECASE)
+                # re.search(r'bug', title, re.IGNORECASE) or
+                # re.search(r'defect', title, re.IGNORECASE) or
+                # re.search(r'fault', title, re.IGNORECASE) or
+                # re.search(r'error', title, re.IGNORECASE)
+        )):
+            # and not re.search(r'usability', title, re.IGNORECASE)):
             return True
         return False
 
