@@ -27,11 +27,14 @@ Search String = $XR **AND** ($T **OR** $B) **AND** $S **NOT** $UX
 * usability
 
 ```
-# title
-("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR") AND (test OR validation OR verification)
+# Year
+2000 - 2024
 
-# full text
-software OR application
+# title
+"virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR" 
+AND 
+test* OR verif* OR validat*
+test OR testing OR validate OR validation OR verify * verification
 
 # ProQuest
 title(("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR") AND (test* OR validat* OR verif* OR bug* OR defect* OR fault* OR error*) NOT usability) AND (software OR application*)

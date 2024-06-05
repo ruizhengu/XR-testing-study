@@ -17,8 +17,8 @@ class Metadata:
             "ProQuest": {"files": "ProQuest*.bib", "sheet": "ProQuest"}
         }
 
-        self.library = "ACM"
-        # self.library = "IEEE"
+        # self.library = "ACM"
+        self.library = "IEEE"
         # self.library = "Scopus"
         # self.library = "ScienceDirect"
         # self.library = "ProQuest"
@@ -145,10 +145,10 @@ class Metadata:
 
     def keyword_verification(self, title):
         if ((
-                re.search(r'virtual reality', title, re.IGNORECASE) or
-                re.search(r'augmented reality', title, re.IGNORECASE) or
-                re.search(r'mixed reality', title, re.IGNORECASE) or
-                re.search(r'extended reality', title, re.IGNORECASE) or
+                re.search(r'virtual[-\s]reality', title, re.IGNORECASE) or
+                re.search(r'augmented[-\s]reality', title, re.IGNORECASE) or
+                re.search(r'mixed[-\s]reality', title, re.IGNORECASE) or
+                re.search(r'extended[-\s]reality', title, re.IGNORECASE) or
                 re.search(r'\bVR\b', title) or
                 re.search(r'\bAR\b', title) or
                 re.search(r'\bXR\b', title) or
@@ -156,7 +156,7 @@ class Metadata:
         ) and (
                 re.search(r'test', title, re.IGNORECASE) or
                 re.search(r'validat', title, re.IGNORECASE) or
-                re.search(r'verifi', title, re.IGNORECASE)
+                re.search(r'verif', title, re.IGNORECASE)
                 # re.search(r'bug', title, re.IGNORECASE) or
                 # re.search(r'defect', title, re.IGNORECASE) or
                 # re.search(r'fault', title, re.IGNORECASE) or
