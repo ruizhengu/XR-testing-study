@@ -36,7 +36,7 @@ Search String = $XR **AND** ($T **OR** $B) **AND** $S **NOT** $UX
 | PredART: Towards Automatic Oracle Prediction of Object Placements in Augmented Reality Testing | https://doi.org/10.1145/3551349.3561160                      |    T     |
 | Automated testing of virtual reality application interfaces  | https://doi.org/10.1145/769953.769966                        |    T     |
 | Automated Test of VR Applications                            | https://doi.org/10.1007/978-3-030-60703-6_18                 |    T     |
-| An automated functional testing approach for virtual reality applications | https://doi.org/10.1002/stvr.1690                            |          |
+| An automated functional testing approach for virtual reality applications | https://doi.org/10.1002/stvr.1690                            |    T     |
 
 
 
