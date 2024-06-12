@@ -33,6 +33,7 @@ class Metadata:
             "Title",
             "Author",
             "Year",
+            "Abstract",
             "Publisher",
             "DOI",
             "Booktitle",
@@ -76,6 +77,7 @@ class Metadata:
         title = entry.get("title", "N/A")
         author = entry.get("author", "N/A")
         year = entry.get("year", "N/A")
+        abstract = entry.get("abstract", "N/A")
         publisher = entry.get("publisher", "N/A")
         doi = entry.get("doi", "N/A")
         booktitle = entry.get("booktitle", "N/A")
@@ -85,6 +87,7 @@ class Metadata:
             title,
             author,
             year,
+            abstract,
             publisher,
             doi,
             booktitle,
@@ -104,7 +107,7 @@ class Metadata:
             for entry in entries:
                 count_search_results += 1
                 entry_dict = {}
-                fields = ["title", "author", "year", "publisher", "doi", "booktitle", "journal", "keywords"]
+                fields = ["title", "author", "year", "abstract", "publisher", "doi", "booktitle", "journal", "keywords"]
                 for field in fields:
                     regex = r'\b' + field + r'\s*=\s*[{"]([^"}]+)[}"]'
                     match = re.search(regex, entry, re.IGNORECASE)
@@ -123,6 +126,7 @@ class Metadata:
         title = entry_dict["title"]
         author = entry_dict["author"]
         year = entry_dict["year"]
+        abstract = entry_dict["abstract"]
         publisher = entry_dict["publisher"]
         doi = entry_dict["doi"]
         booktitle = entry_dict["booktitle"]
@@ -132,6 +136,7 @@ class Metadata:
             title,
             author,
             year,
+            abstract,
             publisher,
             doi,
             booktitle,
