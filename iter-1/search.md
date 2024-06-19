@@ -44,17 +44,33 @@ Search String = $XR **AND** ($T **OR** $B) **AND** $S **NOT** $UX
 # Year
 2000 - 2024
 
-# title
-"virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR" 
-AND 
-test* OR verif* OR validat*
-test OR testing OR validate OR validation OR verify OR verification
+# Language
+English
+```
 
+```
+$XR AND ($T OR $B) AND $A
+
+$XR - title
+"virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR" 
+
+$T - title
+test* OR verif* OR validat* OR detect*
+test OR testing OR verification OR verify OR verifing OR validation OR validate OR validating OR detection OR detect OR detecting
+
+$B - title
+bug OR fault OR defect
+
+$ A - title & abstract
+automated OR automate OR automatic OR autonomous
+
+("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR VR OR AR OR XR OR MR) AND (test OR testing OR verification OR verify OR verifying OR validation OR validate OR validating OR detection OR detect OR detecting OR bug OR fault OR defect)
+```
+
+```
 # ProQuest
 title(("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR") AND (test* OR validat* OR verif* OR bug* OR defect* OR fault* OR error*) NOT usability) AND (software OR application*)
-```
 
-```
 # ScienceDirect
 * Wildcards '*' are not supported
 * Title can only contain 8 boolean connectors
