@@ -49,22 +49,21 @@ English
 ```
 
 ```
-$XR AND ($T OR $B) AND $A
+$XR AND ($T OR $B) AND $A NOT "MR image"
 
 $XR - title
 "virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR" 
 
 $T - title
-test* OR verif* OR validat* OR detect*
-test OR testing OR verification OR verify OR verifing OR validation OR validate OR validating OR detection OR detect OR detecting
+test OR testing OR check OR checking OR detect OR detecting OR detection
 
 $B - title
-bug OR fault OR defect
+bug OR fault OR defect OR quality
 
 $ A - title & abstract
-automated OR automate OR automatic OR autonomous
+automated OR automate OR automatic OR autonomous OR automatically
 
-("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR VR OR AR OR XR OR MR) AND (test OR testing OR verification OR verify OR verifying OR validation OR validate OR validating OR detection OR detect OR detecting OR bug OR fault OR defect)
+("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR" ) AND (test OR testing OR check OR checking OR detect OR detecting OR detection OR bug OR fault OR defect OR quality) NOT "MR image"
 ```
 
 ```
