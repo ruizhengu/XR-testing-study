@@ -55,15 +55,12 @@ $XR - title
 "virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR" 
 
 $T - title
-test OR testing OR check OR checking OR detect OR detecting OR detection
+test OR testing OR detect OR detecting OR detection OR verify OR verification OR verifying
 
 $B - title
-bug OR fault OR defect OR quality
+bug OR fault OR defect OR error
 
-$ A - title & abstract
-automated OR automate OR automatic OR autonomous OR automatically
-
-("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR" ) AND (test OR testing OR check OR checking OR detect OR detecting OR detection OR bug OR fault OR defect OR quality) NOT "MR image"
+("virtual reality" OR "augmented reality" OR "mixed reality" OR "extended reality" OR "VR" OR "AR" OR "XR" OR "MR" ) AND (test OR testing OR detect OR detecting OR detection OR verify OR verification OR verifying OR bug OR fault OR defect OR error)
 ```
 
 ```
