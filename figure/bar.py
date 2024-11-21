@@ -1,34 +1,57 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import colors as mcolors
+from matplotlib.ticker import MaxNLocator
 
-# Step 1: Read the Excel file
-file_path = '../primary study.xlsx'  # Update this to your file path
-df = pd.read_excel(file_path)
 
-# Step 2: Ensure the 'Year' column is treated as integer
-df['Year'] = pd.to_numeric(df['Year'], errors='coerce')  # Convert to numeric, coerce errors to NaN
+colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
 
-# Step 3: Drop rows with NaN values in 'Year' column
-df = df.dropna(subset=['Year'])
+def publication_year():
+    file_path = '../XR_Study.xlsx'
+    df = pd.read_excel(file_path, sheet_name="Data Extraction")
+    df['year'] = pd.to_numeric(df['year'], errors='coerce')  # Convert to numeric, coerce errors to NaN
 
-# Step 4: Count occurrences of each year
-year_counts = df['Year'].value_counts()
+    df = df.dropna(subset=['year'])
+    year_counts = df['year'].value_counts().sort_index()
+    sorted_year_counts = year_counts.sort_index()
 
-# Step 5: Sort by year
-sorted_year_counts = year_counts.sort_index()
+    plt.figure(figsize=(10, 6))
+    plt.bar(sorted_year_counts.index, sorted_year_counts.values, color='tab:brown')
 
-# Step 6: Create a bar chart
-plt.figure(figsize=(10, 6))
-plt.bar(sorted_year_counts.index, sorted_year_counts.values, color='tab:brown')
+    for year, count in sorted_year_counts.items():
+        plt.text(year, count, str(count), ha='center', va='bottom', fontsize=12)
 
-all_years = range(2000, 2025)
-plt.xticks(all_years)  # Set x-axis ticks
+    all_years = range(2000, 2025)
+    plt.xticks(all_years)
 
-plt.xlabel('Year')
-plt.ylabel('Count')
-plt.title('Count of Items by Year')
-plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
-plt.tight_layout()  # Adjust layout to fit everything nicely
+    plt.ylabel('Number of Studies')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
 
-# Step 7: Show the plot
-plt.show()
+    plt.show()
+
+def venue_type():
+    file_path = '../XR_Study.xlsx'
+    df = pd.read_excel(file_path, sheet_name="Data Extraction")
+    venue_types = ["Journal", "Conference", "Workshop", "Symposium"]
+    venue_counts = df["venue type"].value_counts()
+    filtered_counts = venue_counts[venue_types].reset_index()
+    filtered_counts.columns = ['Venue Type', 'Count']
+
+    plt.figure(figsize=(6, 4))
+    plt.bar(filtered_counts['Venue Type'], filtered_counts['Count'], width=0.5, color=colors["cadetblue"])
+
+    for i, count in enumerate(filtered_counts['Count']):
+        plt.text(i, count + 0.15, str(count), ha='center', fontsize=10)
+
+    plt.ylabel('Frequency')
+    plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))  # Ensure y-ticks are integers
+    plt.tight_layout()
+    plt.show()
+
+
+def venue_topic():
+    pass
+
+# publication_year()
+venue_type()
