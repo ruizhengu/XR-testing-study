@@ -50,8 +50,32 @@ def venue_type():
     plt.show()
 
 
-def venue_topic():
-    pass
+def venue_domain():
+    file_path = '../XR_Study.xlsx'
+    df = pd.read_excel(file_path, sheet_name="Data Extraction")
+    venue_domains = ["HCI", "XR", "SWE", "CG", "SP", "General", "XR, SP", "XR, SWE"]
+    venue_counts = df["venue topic"].value_counts()
+    filtered_counts = venue_counts[venue_domains].reset_index()
+    filtered_counts.columns = ['Venue Domain', 'Count']
+
+    filtered_counts['Venue Domain'] = filtered_counts['Venue Domain'].replace({
+        "XR, SP": "XR+SP",
+        "XR, SWE": "XR+SWE"
+    })
+
+    plt.figure(figsize=(6, 4))
+    plt.bar(filtered_counts['Venue Domain'], filtered_counts['Count'], width=0.5, color=colors["cadetblue"])
+
+    for i, count in enumerate(filtered_counts['Count']):
+        plt.text(i, count + 0.15, str(count), ha='center', fontsize=10)
+
+    plt.ylabel('Frequency')
+    plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))  # Ensure y-ticks are integers
+    plt.tight_layout()
+    plt.show()
+
+
 
 # publication_year()
-venue_type()
+# venue_type()
+venue_domain()
