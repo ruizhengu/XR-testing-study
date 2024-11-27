@@ -16,7 +16,7 @@ def publication_year():
     sorted_year_counts = year_counts.sort_index()
 
     plt.figure(figsize=(10, 6))
-    plt.bar(sorted_year_counts.index, sorted_year_counts.values, color='tab:brown')
+    plt.bar(sorted_year_counts.index, sorted_year_counts.values, color=colors["cadetblue"])
 
     for year, count in sorted_year_counts.items():
         plt.text(year, count, str(count), ha='center', va='bottom', fontsize=12)
@@ -24,8 +24,9 @@ def publication_year():
     all_years = range(2000, 2025)
     plt.xticks(all_years)
 
-    plt.ylabel('Number of Studies')
+    plt.ylabel('Number of Studies', fontsize=14)
     plt.xticks(rotation=45)
+    plt.yticks(fontsize=12)
     plt.tight_layout()
 
     plt.show()
