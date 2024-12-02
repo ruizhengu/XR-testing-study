@@ -75,8 +75,32 @@ def venue_domain():
     plt.tight_layout()
     plt.show()
 
+def technology():
+    file_path = '../XR_Study.xlsx'
+    df = pd.read_excel(file_path, sheet_name="Data Extraction")
+    technology_type = ["XR", "VR", "AR", "MR", "VR, AR"]
+    technology_counts = df["technology"].value_counts()
+    filtered_counts = technology_counts[technology_type].reset_index()
+    filtered_counts.columns = ['Technology', 'Count']
 
+    filtered_counts['Technology'] = filtered_counts['Technology'].replace({
+        "VR, AR": "VR/AR",
+    })
+
+
+    plt.figure(figsize=(6, 4))
+    plt.bar(filtered_counts['Technology'], filtered_counts['Count'], width=0.5, color=colors["cadetblue"])
+
+    for i, count in enumerate(filtered_counts['Count']):
+        plt.text(i, count + 0.15, str(count), ha='center', fontsize=10)
+
+    plt.ylabel('Frequency')
+    plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))  # Ensure y-ticks are integers
+    plt.tight_layout()
+    plt.show()
 
 # publication_year()
 # venue_type()
-venue_domain()
+# venue_domain()
+
+technology()
