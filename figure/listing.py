@@ -49,9 +49,12 @@ def listing_topic():
     file_path = '../XR_Study.xlsx'
     df = pd.read_excel(file_path, sheet_name="Data Extraction")
 
-    topic_counts = df['topic'].value_counts()
-    for topic, count in topic_counts.items():
-        print(f"{topic}: {count}")
+    grouped_data = df.groupby('topic')['ID'].apply(list).sort_index()
+
+    # Print topic and corresponding sorted IDs
+    for topic, ids in grouped_data.items():
+        sorted_ids = sorted(ids, key=lambda x: int(x[2:]))  # Assumes IDs are in the format PS<number>
+        print(f"{topic}: {', '.join(sorted_ids)}")
 
 def check_lines():
     file_path = "/Users/ruizhengu/Downloads/ISSTA2023-VRTesting-ReplPackage/ReplicationPackage/VR_Project_List.txt"
