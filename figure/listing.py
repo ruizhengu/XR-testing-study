@@ -1,3 +1,5 @@
+from tabnanny import check
+
 import pandas as pd
 
 
@@ -43,8 +45,22 @@ def listing_dataset():
     for research_type, count in research_type_counts.items():
         print(f"{research_type}: {count}")
 
+def listing_topic():
+    file_path = '../XR_Study.xlsx'
+    df = pd.read_excel(file_path, sheet_name="Data Extraction")
+
+    topic_counts = df['topic'].value_counts()
+    for topic, count in topic_counts.items():
+        print(f"{topic}: {count}")
+
+def check_lines():
+    file_path = "/Users/ruizhengu/Downloads/ISSTA2023-VRTesting-ReplPackage/ReplicationPackage/VR_Project_List.txt"
+    with open(file_path, 'r', encoding='utf-8') as file:
+        print(sum(1 for _ in file))
+
 
 # listing_venue()
 # listing_research_type()
-listing_tool()
+# listing_tool()
 # listing_dataset()
+listing_topic()
