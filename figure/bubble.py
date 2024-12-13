@@ -210,7 +210,7 @@ def topic_vs_research_type():
     research_types = grouped_data["research type - final"].unique()
     topics = grouped_data["topic"].unique()
 
-    plt.figure(figsize=(15, 10))
+    plt.figure(figsize=(10, 8))
 
     for _, row in grouped_data.iterrows():
         research_type = row['research type - final']
@@ -240,6 +240,7 @@ def topic_vs_research_type():
     plt.yticks(range(len(topics)), topics, fontsize=12)
     plt.grid(alpha=0.5)
 
+    # plt.subplots_adjust(left=0.15, right=0.95, top=0.95, bottom=0.15)
     plt.tight_layout()
     plt.show()
 

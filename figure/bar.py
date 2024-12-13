@@ -1,3 +1,5 @@
+from collections import Counter
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import colors as mcolors
@@ -99,8 +101,19 @@ def technology():
     plt.tight_layout()
     plt.show()
 
+def platform_engine():
+    file_path = '../XR_Study.xlsx'
+    df = pd.read_excel(file_path, sheet_name="Data Extraction")
+    data = df["dataset or tool - platform & engine & SDK"].dropna().str.strip()
+    non_empty_count = len(data)
+    print(non_empty_count)
+    all_items = [item.strip() for cell in data for item in cell.split(',')]
+    item_counts = Counter(all_items)
+    print(item_counts)
+
+
 # publication_year()
 # venue_type()
 # venue_domain()
-
 technology()
+# platform_engine()
