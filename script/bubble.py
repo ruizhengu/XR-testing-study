@@ -114,7 +114,7 @@ def test():
         }
     }
 
-    # Create figure
+    # Create figure_1
     fig = go.Figure()
 
     left_count_y = 0
@@ -189,7 +189,7 @@ def test():
         margin=dict(l=100, r=100)
     )
 
-    # Show the figure
+    # Show the figure_1
     fig.show()
 
 
