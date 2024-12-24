@@ -54,7 +54,7 @@ def listing_topic():
     # Print topic and corresponding sorted IDs
     for topic, ids in grouped_data.items():
         sorted_ids = sorted(ids, key=lambda x: int(x[2:]))  # Assumes IDs are in the format PS<number>
-        print(f"{topic}: {', '.join(sorted_ids)}")
+        print(f"{topic}: {', '.join(sorted_ids)}; total: {len(sorted_ids)}")
 
 def check_lines():
     file_path = "/Users/ruizhengu/Downloads/ISSTA2023-VRTesting-ReplPackage/ReplicationPackage/VR_Project_List.txt"
@@ -63,7 +63,7 @@ def check_lines():
 
 
 # listing_venue()
-# listing_research_type()
+listing_research_type()
 # listing_tool()
 # listing_dataset()
-listing_topic()
+# listing_topic()

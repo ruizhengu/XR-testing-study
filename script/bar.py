@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from matplotlib import colors as mcolors
 from matplotlib.ticker import MaxNLocator
 
-
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
+
 
 def publication_year():
     file_path = '../XR_Study.xlsx'
@@ -17,21 +17,22 @@ def publication_year():
     year_counts = df['year'].value_counts().sort_index()
     sorted_year_counts = year_counts.sort_index()
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(5, 3))
     plt.bar(sorted_year_counts.index, sorted_year_counts.values, color=colors["cadetblue"])
 
     for year, count in sorted_year_counts.items():
-        plt.text(year, count, str(count), ha='center', va='bottom', fontsize=12)
+        plt.text(year, count, str(count), ha='center', va='bottom', fontsize=10)
 
     all_years = range(2000, 2025)
+    plt.ylabel('Number of Studies', fontsize=11)
     plt.xticks(all_years)
-
-    plt.ylabel('Number of Studies', fontsize=14)
-    plt.xticks(rotation=45)
-    plt.yticks(fontsize=12)
+    labels = [str(year) if year % 4 == 0 else '' for year in all_years]
+    plt.gca().set_xticklabels(labels)
+    plt.ylim(0, 13)
     plt.tight_layout()
+    # plt.show()
+    plt.savefig('/Users/ruizhengu/Projects/XR-testing-study/figure/publication_year.png', dpi=300)
 
-    plt.show()
 
 def venue_type():
     file_path = '../XR_Study.xlsx'
@@ -41,16 +42,19 @@ def venue_type():
     filtered_counts = venue_counts[venue_types].reset_index()
     filtered_counts.columns = ['Venue Type', 'Count']
 
-    plt.figure(figsize=(6, 4))
-    plt.bar(filtered_counts['Venue Type'], filtered_counts['Count'], width=0.5, color=colors["cadetblue"])
+    plt.figure(figsize=(5, 2.5))
+    plt.bar(filtered_counts['Venue Type'], filtered_counts['Count'], width=0.25, color=colors["tan"])
 
     for i, count in enumerate(filtered_counts['Count']):
         plt.text(i, count + 0.15, str(count), ha='center', fontsize=10)
 
-    plt.ylabel('Frequency')
+    plt.ylabel('Frequency', fontsize=11)
+    plt.ylim(0, 15)
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))  # Ensure y-ticks are integers
     plt.tight_layout()
-    plt.show()
+    # plt.show()
+    plt.savefig('/Users/ruizhengu/Projects/XR-testing-study/figure/venue_type.png', dpi=300)
+
 
 
 def venue_domain():
@@ -77,6 +81,7 @@ def venue_domain():
     plt.tight_layout()
     plt.show()
 
+
 def technology():
     file_path = '../XR_Study.xlsx'
     df = pd.read_excel(file_path, sheet_name="Data Extraction")
@@ -89,7 +94,6 @@ def technology():
         "VR, AR": "VR/AR",
     })
 
-
     plt.figure(figsize=(6, 4))
     plt.bar(filtered_counts['Technology'], filtered_counts['Count'], width=0.5, color=colors["cadetblue"])
 
@@ -100,6 +104,7 @@ def technology():
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))  # Ensure y-ticks are integers
     plt.tight_layout()
     plt.show()
+
 
 def platform_engine():
     file_path = '../XR_Study.xlsx'
@@ -113,7 +118,7 @@ def platform_engine():
 
 
 # publication_year()
-# venue_type()
+venue_type()
 # venue_domain()
-technology()
+# technology()
 # platform_engine()
