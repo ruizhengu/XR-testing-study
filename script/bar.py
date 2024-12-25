@@ -94,16 +94,19 @@ def technology():
         "VR, AR": "VR/AR",
     })
 
-    plt.figure(figsize=(6, 4))
-    plt.bar(filtered_counts['Technology'], filtered_counts['Count'], width=0.5, color=colors["cadetblue"])
+    plt.figure(figsize=(5, 2.5))
+    plt.bar(filtered_counts['Technology'], filtered_counts['Count'], width=0.25, color=colors["cadetblue"])
 
     for i, count in enumerate(filtered_counts['Count']):
         plt.text(i, count + 0.15, str(count), ha='center', fontsize=10)
 
-    plt.ylabel('Frequency')
+    plt.ylabel('Frequency', fontsize=11)
+    plt.ylim(0, 22)
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))  # Ensure y-ticks are integers
     plt.tight_layout()
-    plt.show()
+    # plt.show()
+    plt.savefig('/Users/ruizhengu/Projects/XR-testing-study/figure/xr_technology.png', dpi=300)
+
 
 
 def platform_engine():
@@ -118,7 +121,7 @@ def platform_engine():
 
 
 # publication_year()
-venue_type()
+# venue_type()
 # venue_domain()
-# technology()
+technology()
 # platform_engine()
