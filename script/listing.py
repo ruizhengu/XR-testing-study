@@ -21,69 +21,39 @@ def listing_venue():
         print(f"{no} & {venue} & {venue_type} & {venue_domain} & {count} \\\\")
         no += 1
 
-def listing_research_type():
+def listing_data():
     file_path = '../XR_Study.xlsx'
     df = pd.read_excel(file_path, sheet_name="Data Extraction")
 
-    research_type_counts = df['research type - final'].value_counts()
-    for research_type, count in research_type_counts.items():
-        print(f"{research_type}: {count}")
+    # data = df.groupby('research type - final')['ID'].apply(list).sort_index() # research type
+    # data = df.groupby('used/proposed tool')['ID'].apply(list).sort_index()  # tool
+    # data = df.groupby('proposed dataset')['ID'].apply(list).sort_index()  # proposed dataset
+    # data = df.groupby('topic')['ID'].apply(list).sort_index() # topic
+    # data = df.groupby('test objective')['ID'].apply(list).sort_index() # test objective
+    data = df.groupby('test level')['ID'].apply(list).sort_index() # test level
 
-def listing_tool():
-    file_path = '../XR_Study.xlsx'
-    df = pd.read_excel(file_path, sheet_name="Data Extraction")
-
-    research_type_counts = df['used/proposed tool'].value_counts()
-    for research_type, count in research_type_counts.items():
-        print(f"{research_type}: {count}")
-
-def listing_dataset():
-    file_path = '../XR_Study.xlsx'
-    df = pd.read_excel(file_path, sheet_name="Data Extraction")
-
-    research_type_counts = df['proposed dataset'].value_counts()
-    for research_type, count in research_type_counts.items():
-        print(f"{research_type}: {count}")
-
-def listing_topic():
-    file_path = '../XR_Study.xlsx'
-    df = pd.read_excel(file_path, sheet_name="Data Extraction")
-    grouped_data = df.groupby('topic')['ID'].apply(list).sort_index()
-
-    for topic, ids in grouped_data.items():
+    for study, ids in data.items():
         sorted_ids = sorted(ids, key=lambda x: int(x[2:]))  # Assumes IDs are in the format PS<number>
-        print(f"{topic}: {', '.join(sorted_ids)}; total: {len(sorted_ids)}")
+        print(f"{study}: {', '.join(sorted_ids)}; total: {len(sorted_ids)}")
 
-def listing_objective():
+def listing_data_grouped():
     file_path = '../XR_Study.xlsx'
     df = pd.read_excel(file_path, sheet_name="Data Extraction")
-    grouped_data = df.groupby('test objective')['ID'].apply(list).sort_index()
 
-    for objective, ids in grouped_data.items():
-        sorted_ids = sorted(ids, key=lambda x: int(x[2:]))  # Assumes IDs are in the format PS<number>
-        print(f"{objective}: {', '.join(sorted_ids)}; total: {len(sorted_ids)}")
+    # data = df.groupby('test objective')['ID'].apply(list).sort_index() # test objective
+    data = df.groupby('test level')['ID'].apply(list).sort_index()  # test level
 
-    # category = {}
-    # for topic, ids in grouped_data.items():
-    #     topic_indi = topic.split(", ")
-    #     for indi in topic_indi:
-    #         if indi not in category:
-    #             category[indi] = []
-    #         category[indi].extend(ids)
-    # for indi, ids in category.items():
-    #     category[indi] = sorted(ids, key=lambda x: int(x[2:]))
-    # for indi, ids in sorted(category.items()):
-    #     print(f"{indi}: {', '.join(ids)}; total: {len(ids)}")
+    category = {}
+    for studies, ids in data.items():
+        # study = studies.split(", ")
+        for study in studies.split(", "):
+            if study not in category:
+                category[study] = []
+            category[study].extend(ids)
+    for study, ids in category.items():
+        category[study] = sorted(ids, key=lambda x: int(x[2:]))
+    for study, ids in sorted(category.items()):
+        print(f"{study}: {', '.join(ids)}; total: {len(ids)}")
 
-def check_lines():
-    file_path = "/Users/ruizhengu/Downloads/ISSTA2023-VRTesting-ReplPackage/ReplicationPackage/VR_Project_List.txt"
-    with open(file_path, 'r', encoding='utf-8') as file:
-        print(sum(1 for _ in file))
-
-
-# listing_venue()
-# listing_research_type()
-# listing_tool()
-# listing_dataset()
-# listing_topic()
-listing_objective()
+# listing_data()
+listing_data_grouped()
