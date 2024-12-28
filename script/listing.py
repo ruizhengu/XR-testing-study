@@ -41,7 +41,11 @@ def listing_data_grouped():
     df = pd.read_excel(file_path, sheet_name="Data Extraction")
 
     # data = df.groupby('test objective')['ID'].apply(list).sort_index() # test objective
-    data = df.groupby('test level')['ID'].apply(list).sort_index()  # test level
+    # data = df.groupby('test level')['ID'].apply(list).sort_index()  # test level
+    # data = df.groupby('test type')['ID'].apply(list).sort_index()  # test type
+    # data = df.groupby('test technique')['ID'].apply(list).sort_index()  # test technique
+    data = df.groupby('eval metrics')['ID'].apply(list).sort_index()  # eval metrics
+    data = df.groupby('eval environment')['ID'].apply(list).sort_index()  # eval environment
 
     category = {}
     for studies, ids in data.items():

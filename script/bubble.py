@@ -65,7 +65,7 @@ def objective_vs_target():
     grouped_data = df.groupby(["test objective", "test target"]).size().reset_index(name="count")
     objectives = grouped_data["test objective"].unique()
     targets = grouped_data["test target"].unique()
-    plt.figure(figsize=(10, 5))
+    plt.figure(figsize=(10, 5.5))
 
     for _, row in grouped_data.iterrows():
         objective = row['test objective']
@@ -90,6 +90,8 @@ def objective_vs_target():
             fontsize=14,
         )
 
+    plt.xlabel("test objective", fontsize=16)
+    plt.ylabel('test target', fontsize=16)
     plt.xticks(range(len(targets)), targets, rotation=45, ha='right', fontsize=14)
     plt.yticks(range(len(objectives)), objectives, fontsize=14)
     plt.grid(alpha=0.5)
@@ -100,5 +102,60 @@ def objective_vs_target():
     plt.savefig('/Users/ruizhengu/Projects/XR-testing-study/figure/objective_vs_target.png', dpi=300)
 
 
+def eval_env_vs_metric():
+    file_path = '../XR_Study.xlsx'
+    df = pd.read_excel(file_path, sheet_name="Data Extraction")
+
+    df = df.assign(
+        **{
+            "eval metrics": df["eval metrics"].str.split(", "),
+            "eval environment": df["eval environment"].str.split(", "),
+        }
+    ).explode("eval metrics").explode("eval environment")
+
+    grouped_data = df.groupby(["eval metrics", "eval environment"]).size().reset_index(name="count")
+    grouped_data["eval metrics"] = grouped_data["eval metrics"].replace({
+        "standard ML performance metrics": "standard ML metrics",
+    }
+    )
+
+    objectives = grouped_data["eval metrics"].unique()
+    targets = grouped_data["eval environment"].unique()
+    plt.figure(figsize=(10, 6))
+
+    for _, row in grouped_data.iterrows():
+        objective = row['eval metrics']
+        target = row['eval environment']
+        count = row['count']
+        y_pos = list(targets).index(target)
+        x_pos = list(objectives).index(objective)
+
+        plt.scatter(
+            x=x_pos,
+            y=y_pos,
+            s=count * 300,
+            alpha=0.5,
+        )
+
+        plt.text(
+            x_pos,
+            y_pos - 0.1,
+            str(count),
+            ha='center',
+            va='bottom',
+            fontsize=14,
+        )
+
+    plt.xlabel("evaluation metric", fontsize=16)
+    plt.ylabel('evaluation environment', fontsize=16)
+    plt.yticks(range(len(targets)), targets, fontsize=14)
+    plt.xticks(range(len(objectives)), objectives, fontsize=14, rotation=45, ha='right')
+    plt.grid(alpha=0.5)
+    plt.ylim(-0.5, 5.5)
+
+    plt.tight_layout()
+    plt.show()
+
 # topic_vs_research_type()
-objective_vs_target()
+# objective_vs_target()
+eval_env_vs_metric()
