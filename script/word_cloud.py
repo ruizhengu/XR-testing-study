@@ -21,12 +21,12 @@ def test_activity():
     test_activity_values = df["test activity"].dropna().astype(str)
     text = " ".join(test_activity_values)
     text = text.replace("runtime testing", "runtime")
+    print(text)
 
-    wc = WordCloud(background_color="white", max_words=2000)
-    wc.generate(text)
+    wc = WordCloud(background_color="white", width=1600, height=800).generate(text)
     wc = wc.recolor(color_func=qualitative_color_func)
 
-    plt.figure(figsize=(5, 3))
+    plt.figure(figsize=(15, 9))
     plt.imshow(wc, interpolation="bilinear")
     plt.axis("off")
     plt.tight_layout()
