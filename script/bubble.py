@@ -90,8 +90,8 @@ def objective_vs_target():
             fontsize=14,
         )
 
-    plt.xlabel("test objective", fontsize=16)
-    plt.ylabel('test target', fontsize=16)
+    plt.xlabel("test target", fontsize=16)
+    plt.ylabel('test objective', fontsize=16)
     plt.xticks(range(len(targets)), targets, rotation=45, ha='right', fontsize=14)
     plt.yticks(range(len(objectives)), objectives, fontsize=14)
     plt.grid(alpha=0.5)
@@ -157,5 +157,5 @@ def eval_env_vs_metric():
     plt.show()
 
 # topic_vs_research_type()
-# objective_vs_target()
-eval_env_vs_metric()
+objective_vs_target()
+# eval_env_vs_metric()
