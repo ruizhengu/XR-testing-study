@@ -60,14 +60,14 @@ def venue_type():
 def venue_domain():
     file_path = '../XR_Study.xlsx'
     df = pd.read_excel(file_path, sheet_name="Data Extraction")
-    venue_domains = ["HCI", "XR", "SWE", "CG", "SP", "General", "XR, SP", "XR, SWE"]
+    venue_domains = ["HCI", "XR", "SE", "CG", "SP", "General", "XR, SP", "XR, SE"]
     venue_counts = df["venue topic"].value_counts()
     filtered_counts = venue_counts[venue_domains].reset_index()
     filtered_counts.columns = ['Venue Domain', 'Count']
 
     filtered_counts['Venue Domain'] = filtered_counts['Venue Domain'].replace({
         "XR, SP": "XR+SP",
-        "XR, SWE": "XR+SWE"
+        "XR, SE": "XR+SE"
     })
 
     plt.figure(figsize=(6, 4))
@@ -79,7 +79,8 @@ def venue_domain():
     plt.ylabel('Frequency')
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))  # Ensure y-ticks are integers
     plt.tight_layout()
-    plt.show()
+    # plt.show()
+    plt.savefig('/Users/ruizhengu/Projects/XR-testing-study/figure/venue_domain.png', dpi=300)
 
 
 def technology():
@@ -122,6 +123,6 @@ def platform_engine():
 
 # publication_year()
 # venue_type()
-# venue_domain()
-technology()
+venue_domain()
+# technology()
 # platform_engine()
