@@ -18,7 +18,7 @@ def topic_vs_research_type():
     research_types = grouped_data["research type - final"].unique()
     topics = grouped_data["topic"].unique()
 
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(8, 6))
 
     for _, row in grouped_data.iterrows():
         research_type = row['research type - final']
@@ -49,7 +49,8 @@ def topic_vs_research_type():
 
         # plt.subplots_adjust(left=0.15, right=0.95, top=0.95, bottom=0.15)
         plt.tight_layout()
-        plt.show()
+        # plt.show()
+        plt.savefig('/Users/ruizhengu/Projects/XR-testing-study/figure/topic_vs_research_type.png', dpi=300)
 
 
 def objective_vs_target():
@@ -156,6 +157,7 @@ def eval_env_vs_metric():
     plt.tight_layout()
     plt.show()
 
-# topic_vs_research_type()
-objective_vs_target()
-# eval_env_vs_metric()
+if __name__ == "__main__":
+    topic_vs_research_type()
+    # objective_vs_target()
+    # eval_env_vs_metric()
